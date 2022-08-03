@@ -45,8 +45,16 @@ app.put('/api/pokemons/:id',(req, res) => {
     pokemons = pokemons.map(pokemon => {
         return pokemon.id === id ? pokemonUpdated : pokemon
     })
-    const message = `Le pokemon ${pokemonUpdated} a bien ete modifie`
+    const message = `Le pokemon num ${pokemonUpdated.id} a bien ete modifie`
     res.json(success(message, pokemonUpdated))
+})
+
+app.delete('/api/pokemons/:id',(req, res) => {
+    const id = parseInt(req.params.id)
+    const pokemonDeleted = pokemons.find(pokemon => pokemon.id === id)
+    pokemons.filter(pokemon => pokemon.id !== id)
+    const message = `Le pokemon num ${pokemonDeleted.id} a ete bien supprime`
+    res.json(success(message, pokemonDeleted))
 })
 
 // app.get('/api/pokemons/:id',(req,res)=>{
