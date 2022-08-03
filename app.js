@@ -1,6 +1,7 @@
 const express = require('express')
 const favicon = require('serve-favicon')
 const morgan = require('morgan')
+const bodyParser = require('body-parser')
 const {success, getUniqueId} = require('./helper.js')
 let pokemons = require('./mock-pokemon')
 
@@ -15,6 +16,7 @@ const port = 3000
 app
     .use(favicon(__dirname + '/favicon.ico'))
     .use(morgan('dev'))
+    .use(bodyParser.json())
 
 app.get('/',(req,res)=>res.send("Hello, Express ! "))
 
@@ -29,7 +31,7 @@ app.get('/api/pokemons', (req, res) => {
     res.json(success('Tous les pokemons presents pour le moment',pokemons))
 })
 
-app.post('',(req, res) => {
+app.post('/api/pokemons',(req, res) => {
     const id = getUniqueId(pokemons)
     const pokemonCreated = {...req.body, ...{id: id, created: new Date()}}
     pokemons.push(pokemonCreated)
