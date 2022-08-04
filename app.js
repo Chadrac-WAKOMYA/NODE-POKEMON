@@ -15,7 +15,9 @@ app
 sequelize.initDb()
 
 // Ici nous placerons nos futurs point de terminaison
-
+require('./src/routes/findAllPokemons')(app)
+require('./src/routes/findPokemonByPK')(app)
+require('./src/routes/createPokemon')(app)
 
 
 
