@@ -52,7 +52,7 @@ app.put('/api/pokemons/:id',(req, res) => {
 app.delete('/api/pokemons/:id',(req, res) => {
     const id = parseInt(req.params.id)
     const pokemonDeleted = pokemons.find(pokemon => pokemon.id === id)
-    pokemons.filter(pokemon => pokemon.id !== id)
+    pokemons = pokemons.filter(pokemon => pokemon.id !== id)
     const message = `Le pokemon num ${pokemonDeleted.id} a ete bien supprime`
     res.json(success(message, pokemonDeleted))
 })
