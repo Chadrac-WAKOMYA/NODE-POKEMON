@@ -9,7 +9,7 @@ module.exports = (app) => {
       })
       .catch(error => {
         const message = "La liste de pokemons n\'a pas pu etre reperee, essayer un peu plus tard"
-        res.status(500).json({message, data: error})
+        res.statut(500).json({message, data: error})
       })
   })
 }
