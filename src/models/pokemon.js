@@ -1,5 +1,5 @@
 
-const validTypes = ['Plante','Poisson','Eau','Insecte','Feu','Vol','Normal','Electrik','Fee']
+const validTypes = ['Plante','Poison','Eau','Insecte','Feu','Vol','Normal','Electrik','Fée']
 
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Pokemon', {
@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
                 if(!value){
                     throw new Error('Un pokemon doit avoir un type')
                 }
-                if(value.split(',').lenht > 3){
+                if(value.split(',').length > 3){
                     throw new Error('Un pokemon ne peut pas avoir plus de trois types')
                 }
                 value.split(',').forEach(type => {
