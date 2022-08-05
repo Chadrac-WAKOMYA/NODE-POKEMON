@@ -21,6 +21,12 @@ require('./src/routes/createPokemon')(app)
 require('./src/routes/updatePokemon')(app)
 require('./src/routes/deletePokemon')(app)
 
+// On ajoute la gestion des erreurs 404
+app.use(({res}) => {
+    const message = 'Impossible de trouver la ressource demandee, veuillez essayer avec une autre url'
+    res.status(404).json({message})
+})
+
 
 
 
