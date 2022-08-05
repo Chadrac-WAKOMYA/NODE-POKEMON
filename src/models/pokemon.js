@@ -7,23 +7,51 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            notEmpty : { msg: 'Name ne doit pas etre vide' },
+            notNull : { msg: 'Name est une propriete requise' }
+        }
       },
       hp: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate:{
             isInt : { msg: 'Utiliser uniquement les nombres entiers, SVP' },
-            notNull : { msg: 'Les points de vie est une propriete requise' }
+            notNull : { msg: 'Les points de vie est une propriete requise' },
+            min : {
+                args: [0],
+                msg: 'Les points de vie doivent etre superieurs ou egaux a 0'
+            },
+            max : {
+                args: [999],
+                msg: 'Les points de vie doivent etre inferieurs ou egaux a 999'
+            }
         }
       },
       cp: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            isInt : { msg: 'Utiliser uniquement les nombres entiers, SVP' },
+            notNull : { msg: 'Les points de vie est une propriete requise' }
+        },
+        min : {
+            args: [0],
+            msg: 'Les points de degats doivent etre superieurs ou egaux a 0'
+        },
+        max : {
+            args: [99],
+            msg: 'Les points de degats doivent etre inferieurs ou egaux a 99'
+        }
       },
       picture: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            isUrl : { msg: 'Utiliser uniquement les URL valides pour les images' },
+            notNull : { msg: 'Les points de vie est une propriete requise' }
+        }
       },
       types: {
         type: DataTypes.STRING,
